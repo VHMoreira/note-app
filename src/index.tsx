@@ -1,3 +1,7 @@
-console.log('hello world')
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-export {}
+ReactDOM.render(
+  <h1>Hello World</h1>,
+  document.getElementById('root')
+)
