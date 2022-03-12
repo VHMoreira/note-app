@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import '@/presentation/styles/global.scss'
+import Router from './routes'
 
 ReactDOM.render(
-  <h1>Hello World</h1>,
+  <Router />,
   document.getElementById('root')
 )

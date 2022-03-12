@@ -1,7 +1,9 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 
 const EditNote: React.FC = () => {
-    return <h1>EditNote</h1>
+    const {noteId} = useParams()
+    return <h1>EditNote {noteId}</h1>
 }
 
 export default EditNote

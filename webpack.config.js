@@ -29,9 +29,14 @@ module.exports = {
   },
   devServer: {
     static: './public',
+    historyApiFallback: { 
+      index: "index.html", 
+      disableDotRule: true 
+    },
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'public'),
+    publicPath: '/'
   },
 };
