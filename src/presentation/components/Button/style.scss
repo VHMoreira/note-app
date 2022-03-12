@@ -1,0 +1,24 @@
+@import '@/presentation/styles/colors.scss';
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    min-width: 100px;
+    border-radius: 5px;
+    color: $dark;
+
+    border: 1px solid $greyBaseline;
+    margin-bottom: 10px;
+}
+
+.buttonIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.buttonContentWrapper {
+    flex: 1;
+}
