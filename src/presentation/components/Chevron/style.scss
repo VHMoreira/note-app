@@ -1,0 +1,19 @@
+.up {
+    transform: rotate(180deg);
+    transition: transform 0.2s linear;
+}
+
+.left {
+    transform: rotateZ(90deg);
+    transition: transform 0.2s linear;
+}
+
+.right {
+    transform: rotate(-90deg);
+    transition: transform 0.2s linear;
+}
+
+.down {
+    transform: rotate(0deg);
+    transition: transform 0.2s linear;
+}
