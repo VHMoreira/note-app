@@ -1,0 +1,35 @@
+@import '@/presentation/styles/colors.scss';
+
+.noteContainer {
+    width: 100%;
+    background-color: $principal;
+    border-radius: 5px;
+    
+    box-shadow: 3px 10px 22px 0px rgba(0,0,0,0.22);
+
+    & + .noteContainer {
+        margin-top: 30px;
+    }
+}
+
+.noteHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.noteBody {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px;
+    transition: transform 0.1s linear;
+}
+
+.noteTitle {
+    font-size: 25px;
+    color: $light;
+    flex-grow: 1;
+}
