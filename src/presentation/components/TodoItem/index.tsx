@@ -1,15 +1,15 @@
 import React from "react"
 import Style from './style.scss'
 import { useToggle } from "@/presentation/hooks"
+import { TodoItem as TodoItemModel } from "@/domain/models"
 
 type Props = {
-    text: string
-    isDone: boolean
+    item: TodoItemModel
     readOnly?: boolean
 }
 
-const TodoItem: React.FC<Props> = ({ isDone, text, readOnly = false }) => {
-    const { isActive, toggle } = useToggle(isDone)
+const TodoItem: React.FC<Props> = ({ item, readOnly = false }) => {
+    const { isActive, toggle } = useToggle(item.isDone)
 
     const handleClick = () => {
         if(readOnly){
@@ -21,7 +21,7 @@ const TodoItem: React.FC<Props> = ({ isDone, text, readOnly = false }) => {
 
     return (
         <li className={`${Style.itemContainer} ${isActive ? Style.done : ''}`} onClick={handleClick}>
-            <p>{ text }</p>
+            <p>{ item.text }</p>
             {!readOnly ? <input readOnly type="checkbox" checked={isActive}/> : null}
         </li>
     )

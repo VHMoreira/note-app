@@ -15,8 +15,7 @@ const TodoList: React.FC<Props> = ({ itens, readOnly = false }) => {
             {itens.map((item) => (
                 <TodoItem 
                     key={item.id} 
-                    text={item.text} 
-                    isDone={item.isDone}
+                    item={item}
                     readOnly={readOnly}
                 />
             ))}
