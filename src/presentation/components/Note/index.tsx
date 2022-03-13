@@ -15,7 +15,6 @@ const Note: React.FC<Props> = ({ title, itens }) => {
 
     const hasUndoneItem = itens.find((item) => item.isDone)
 
-    console.log(hasUndoneItem)
     return (
         <div className={`${Styles.noteContainer} ${!hasUndoneItem ? Styles.allItensDone : ''}`}>
             <div className={Styles.noteHeader} onClick={toggle}>
