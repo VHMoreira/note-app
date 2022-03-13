@@ -13,10 +13,10 @@ type Props = {
 const Note: React.FC<Props> = ({ title, itens }) => {
     const { isActive, toggle } = useToggle()
 
-    const hasUndoneItem = itens.find((item) => item.isDone)
+    const isAllItensDone = itens.filter(item => item.isDone).length === itens.length
 
     return (
-        <div className={`${Styles.noteContainer} ${!hasUndoneItem ? Styles.allItensDone : ''}`}>
+        <div className={`${Styles.noteContainer} ${isAllItensDone ? Styles.allItensDone : ''}`}>
             <div className={Styles.noteHeader} onClick={toggle}>
                 <h1 className={Styles.noteTitle}>{title}</h1>
                 <Chevron 
