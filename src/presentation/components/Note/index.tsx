@@ -4,6 +4,8 @@ import { Divider, Chevron } from '@/presentation/components'
 import { useToggle } from '@/presentation/hooks'
 import { TodoItem } from '@/domain/models'
 import TodoList from '../TodoList'
+import Button from '../Button'
+import { Edit, Trash } from '@/presentation/icons'
 
 type Props = {
     title: string
@@ -28,6 +30,14 @@ const Note: React.FC<Props> = ({ title, itens }) => {
                 <>
                     <Divider />
                     <div className={Styles.noteBody}>
+                        <div className={Styles.noteControllers}>
+                            <Button icon={Edit}>
+                                Edit Note
+                            </Button>
+                            <Button icon={Trash}>
+                                Delete
+                            </Button>
+                        </div>
                         <TodoList itens={itens}/>
                     </div>
                 </>

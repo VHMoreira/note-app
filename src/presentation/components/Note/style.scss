@@ -27,6 +27,7 @@
 .noteBody {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: space-between;
     padding: 10px 15px;
     transition: transform 0.1s linear;
@@ -36,4 +37,16 @@
     font-size: 25px;
     color: $light;
     flex-grow: 1;
+}
+
+.noteControllers {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin-bottom: 10px;
+
+    button + button{
+        margin-left: 5px;
+    }
 }
