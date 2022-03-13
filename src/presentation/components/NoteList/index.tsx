@@ -13,7 +13,7 @@ const NoteList: React.FC<Props> = ({ notes, readOnly = false }) => {
     return (
         <ul className={Styles.listContainer}>
             {notes.map((note) => (
-                <Note key={note.id} title={note.title} itens={note.itens} readOnly={readOnly}/>
+                <Note key={note.id} note={note} readOnly={readOnly}/>
             ))}
         </ul>
     )
