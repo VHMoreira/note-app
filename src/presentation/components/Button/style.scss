@@ -8,7 +8,24 @@
     border-radius: 5px;
     color: $dark;
 
-    border: 1px solid $greyBaseline;
+    border: 1px solid $dark;
+    background-color: transparent;
+
+    &:hover {
+        color: $light;
+        background-color: $principal;
+        border: 1px solid $principal;
+    }
+}
+
+.light {
+    color: $light;
+    border: 1px solid $light;
+
+    &:hover {
+        color: $dark;
+        background-color: $light;
+    }
 }
 
 .buttonIconWrapper {

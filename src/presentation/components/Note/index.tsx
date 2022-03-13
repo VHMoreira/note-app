@@ -10,9 +10,10 @@ import { Edit, Trash } from '@/presentation/icons'
 type Props = {
     title: string
     itens: TodoItem[]
+    readOnly?: boolean
 }
 
-const Note: React.FC<Props> = ({ title, itens }) => {
+const Note: React.FC<Props> = ({ title, itens, readOnly = false }) => {
     const { isActive, toggle } = useToggle()
 
     const isAllItensDone = itens.filter(item => item.isDone).length === itens.length
@@ -30,15 +31,15 @@ const Note: React.FC<Props> = ({ title, itens }) => {
                 <>
                     <Divider />
                     <div className={Styles.noteBody}>
+                        <TodoList itens={itens} readOnly={readOnly}/>
                         <div className={Styles.noteControllers}>
-                            <Button icon={Edit}>
+                            <Button isLightContent icon={Edit}>
                                 Edit Note
                             </Button>
-                            <Button icon={Trash}>
+                            <Button isLightContent icon={Trash}>
                                 Delete
                             </Button>
                         </div>
-                        <TodoList itens={itens}/>
                     </div>
                 </>
             ): null}

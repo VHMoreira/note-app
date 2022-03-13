@@ -5,9 +5,10 @@ import TodoItem from "../TodoItem"
 
 type Props = {
     itens: TodoItemModel[]
+    readOnly?: boolean
 }
 
-const TodoList: React.FC<Props> = ({ itens }) => {
+const TodoList: React.FC<Props> = ({ itens, readOnly = false }) => {
 
     return (
         <ul className={Styles.listContainer}>
@@ -16,6 +17,7 @@ const TodoList: React.FC<Props> = ({ itens }) => {
                     key={item.id} 
                     text={item.text} 
                     isDone={item.isDone}
+                    readOnly={readOnly}
                 />
             ))}
         </ul>

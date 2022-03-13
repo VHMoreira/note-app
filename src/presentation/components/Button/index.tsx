@@ -5,15 +5,17 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
 type Props = {
     icon?: React.FC
+    isLightContent?: boolean
 }
 
 const Button: React.FC<Props & ButtonProps> = ({ 
     icon: Icon,
+    isLightContent = false,
     children, 
     ...props 
 }) => {
     return (
-        <button className={Style.buttonContainer} {...props} >
+        <button className={`${Style.buttonContainer} ${isLightContent ? Style.light : ''}`} {...props} >
             <div className={Style.buttonIconWrapper}>
                 {Icon ? <Icon /> : null} 
             </div>

@@ -5,15 +5,24 @@ import { useToggle } from "@/presentation/hooks"
 type Props = {
     text: string
     isDone: boolean
+    readOnly?: boolean
 }
 
-const TodoItem: React.FC<Props> = ({ isDone, text }) => {
+const TodoItem: React.FC<Props> = ({ isDone, text, readOnly = false }) => {
     const { isActive, toggle } = useToggle(isDone)
 
+    const handleClick = () => {
+        if(readOnly){
+            return
+        }
+
+        toggle()
+    }
+
     return (
-        <li className={`${Style.itemContainer} ${isActive ? Style.done : ''}`} onClick={toggle}>
+        <li className={`${Style.itemContainer} ${isActive ? Style.done : ''}`} onClick={handleClick}>
             <p>{ text }</p>
-            <input readOnly type="checkbox" checked={isActive}/>
+            {!readOnly ? <input readOnly type="checkbox" checked={isActive}/> : null}
         </li>
     )
 }
