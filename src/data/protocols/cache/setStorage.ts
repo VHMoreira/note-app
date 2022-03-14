@@ -1,0 +1,1 @@
+export type SetStorage = (key: string, value: object) => void

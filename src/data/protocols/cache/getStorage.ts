@@ -1,0 +1,1 @@
+export type GetStorage = (key: string) => any
