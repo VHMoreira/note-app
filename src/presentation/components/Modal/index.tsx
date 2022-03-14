@@ -11,7 +11,7 @@ type Props = {
 
 const Modal: React.FC<Props> = ({ title, onClose, isOpen, children }) => {
     return isOpen ? (
-        <>
+        <div className={Style.wrapper}>
             <aside className={Style.modalContainer}>
                 <header className={Style.modalHeader}>
                     <h3>{ title }</h3>
@@ -22,8 +22,7 @@ const Modal: React.FC<Props> = ({ title, onClose, isOpen, children }) => {
                     { children }
                 </div>
             </aside>
-            <div onClick={onClose} className={Style.modalBackground}/>
-        </>
+        </div>
     ): null
 }
 
