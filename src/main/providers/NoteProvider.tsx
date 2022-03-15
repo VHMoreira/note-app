@@ -1,7 +1,7 @@
 import React, { createContext, useCallback, useState } from 'react';
 import { Note } from '@/domain/models'
-import { AddNote, DeleteNote, LoadNotes, LoadNote } from '@/domain/usecases';
-import { cashAddNote,  cashLoadNotes, cashDeleteNote, cashLoadNote} from '@/data/usecases';
+import { AddNote, DeleteNote, LoadNotes, LoadNote, EditNote } from '@/domain/usecases';
+import { cashAddNote,  cashLoadNotes, cashDeleteNote, cashLoadNote, cashEditNote} from '@/data/usecases';
 
 interface NoteContextData {
     notes: Note[]
@@ -10,6 +10,7 @@ interface NoteContextData {
     loadNotes: LoadNotes
     deleteNote: DeleteNote
     loadNote: LoadNote
+    editNote: EditNote
 }
 
 type State = {
@@ -63,8 +64,13 @@ export const NoteProvider: React.FC = ({ children }) => {
         return response
     }, [])
 
+    const editNote = useCallback<EditNote>((params) => {
+        const response = cashEditNote(params)
+        return response
+    }, [])
+
     return (
-        <NoteContext.Provider value={{ ...data, addNote, loadNotes, deleteNote, loadNote }}>
+        <NoteContext.Provider value={{ ...data, addNote, loadNotes, deleteNote, loadNote, editNote }}>
             { children }
         </NoteContext.Provider>
     )

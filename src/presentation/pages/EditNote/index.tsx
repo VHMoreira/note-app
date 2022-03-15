@@ -7,7 +7,7 @@ import { Button, ConfirmationModal } from '@/presentation/components'
 import { TodoItem } from '@/domain/models'
 import { useToggle } from '@/presentation/hooks'
 
-type ItensChangeHandler = (event: React.ChangeEvent<HTMLInputElement>, index: number) => void
+type ItensChangeHandler = (event: React.ChangeEvent<HTMLInputElement>, index: string | number) => void
 
 const EditNote: React.FC = () => {
     const { noteId } = useParams()
@@ -24,7 +24,7 @@ const EditNote: React.FC = () => {
         disable: closeConfirmReset 
     } = useToggle()
     
-    const { note, loadNote, deleteNote } = useNotes()
+    const { note, loadNote, deleteNote, editNote } = useNotes()
 
     const [noteTitle, setNoteTitle] = useState('')
     const [noteItens, setNoteItens] = useState<TodoItem[]>([])
@@ -69,14 +69,16 @@ const EditNote: React.FC = () => {
         ])
     }
 
-    const handleDeleteNewItem = (id: number) => {
+    const handleDeleteNewItem = (id: number | string) => {
         if(canDeleteItem) {
             setNoteItens(prev => prev.filter((item) => item.id !== id))
         }
     }
 
     const handleDeleteNote = useCallback(() => {
-        deleteNote({ id: note.id })
+        deleteNote({ id: noteId })
+        closeConfirmDelete()
+        navigate('/')
     }, [])
 
     const handleResetNote = useCallback(() => {
@@ -85,9 +87,13 @@ const EditNote: React.FC = () => {
         closeConfirmReset()
     }, [note])
 
-    const handleSaveNote = () => {
-        console.log('edit note')
-    }
+    const handleSaveNote = useCallback(() => {
+        editNote({
+            id: noteId,
+            title: noteTitle,
+            itens: noteItens
+        })
+    }, [noteTitle, noteItens])
 
     return (
         <div className={Styles.editNotesContainer}>
@@ -111,13 +117,13 @@ const EditNote: React.FC = () => {
                     </div>
                     <ul className={Styles.itemFieldsList}>
                         {noteItens.map((item, index) => (
-                            <li key={`item-${index}`} className={Styles.fieldContainer}>
+                            <li key={`item-${item.id}`} className={Styles.fieldContainer}>
                                 <input 
                                     className={Styles.fieldInput}
                                     type="text" 
                                     placeholder="Ex: Buy milk" 
                                     value={item.text} 
-                                    onChange={(event) => handleChangeItem(event, index)}
+                                    onChange={(event) => handleChangeItem(event, item.id)}
                                 />
                                 {canDeleteItem ? <Trash className={Styles.delete} onClick={() => handleDeleteNewItem(index)}/> : null}
                                 {(noteItens.length - 1) === index ? <Plus className={Styles.add} onClick={handleAddNewItem} /> : null}
