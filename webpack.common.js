@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'development',
   entry: './src/main/index.tsx',
   devtool: 'inline-source-map',
   module: {
@@ -31,13 +30,6 @@ module.exports = {
     alias: {
         '@': path.join(__dirname, 'src')
     }
-  },
-  devServer: {
-    static: './public',
-    historyApiFallback: { 
-      index: "index.html", 
-      disableDotRule: true 
-    },
   },
   output: {
     filename: 'bundle.js',
