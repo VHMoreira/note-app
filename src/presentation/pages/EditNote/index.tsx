@@ -47,7 +47,7 @@ const EditNote: React.FC = () => {
         setNoteTitle(value)
     }
 
-    const handleChangeItem: ItensChangeHandler = (event, id) => {
+    const handleChangeItemText = useCallback<ItensChangeHandler>((event, id) => {
         const { value } = event.target
         const newItens = noteItens.map((item) => {
             if (item.id === id) {
@@ -60,20 +60,35 @@ const EditNote: React.FC = () => {
             return item
         })
         setNoteItens(newItens)
-    }
+    }, [])
 
-    const handleAddNewItem = () => {
+    const handleChangeItemCheck = useCallback<ItensChangeHandler>((event, id) => {
+        const { checked } = event.target
+        const newItens = noteItens.map((item) => {
+            if (item.id === id) {
+                return {
+                    ...item,
+                    isDone: checked
+                }
+            }
+
+            return item
+        })
+        setNoteItens(newItens)
+    }, [noteItens])
+
+    const handleAddNewItem = useCallback(() => {
         setNoteItens(prev => [
             ...prev,
             { id: -1, isDone: false, text: '' }
         ])
-    }
+    }, [])
 
-    const handleDeleteNewItem = (id: number | string) => {
+    const handleDeleteItem = useCallback((id: number | string) => {
         if(canDeleteItem) {
             setNoteItens(prev => prev.filter((item) => item.id !== id))
         }
-    }
+    }, [canDeleteItem])
 
     const handleDeleteNote = useCallback(() => {
         deleteNote({ id: noteId })
@@ -123,9 +138,10 @@ const EditNote: React.FC = () => {
                                     type="text" 
                                     placeholder="Ex: Buy milk" 
                                     value={item.text} 
-                                    onChange={(event) => handleChangeItem(event, item.id)}
+                                    onChange={(event) => handleChangeItemText(event, item.id)}
                                 />
-                                {canDeleteItem ? <Trash className={Styles.delete} onClick={() => handleDeleteNewItem(index)}/> : null}
+                                <input type="checkbox" checked={item.isDone} onChange={(event) => handleChangeItemCheck(event, item.id)}/>
+                                {canDeleteItem ? <Trash className={Styles.delete} onClick={() => handleDeleteItem(item.id)}/> : null}
                                 {(noteItens.length - 1) === index ? <Plus className={Styles.add} onClick={handleAddNewItem} /> : null}
                             </li>
                         ))}
