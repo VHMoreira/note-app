@@ -23,8 +23,8 @@ const ConfirmationModal: React.FC<Props> = ({
         <Modal isOpen={isOpen} title={title} onClose={onClose}>
             <p>{ text }</p>
             <div className={Styles.actionsContainer}>
-                <Button icon={Cancel} onClick={onClose}>cancel</Button>
-                <Button icon={Confirm} onClick={onConfirm}>confirm</Button>
+                <Button icon={Cancel} onClick={onClose} color="warning">cancel</Button>
+                <Button icon={Confirm} onClick={onConfirm} color="success">confirm</Button>
             </div>
         </Modal>
     )

@@ -79,7 +79,7 @@ const CreateNoteModal: React.FC<Props> = ({ isOpen, onClose }) => {
             <div className={Styles.field}>
                 <div className={Styles.fieldsHeader}>
                     <label htmlFor="itens">Note Itens</label>
-                    <Button icon={Plus} onClick={handleAddNewTask}>new task</Button>
+                    <Button icon={Plus} onClick={handleAddNewTask} color="success">new task</Button>
                 </div>
                 <ul className={Styles.taskFieldsList}>
                     {itens.map((task, index) => (
@@ -96,8 +96,8 @@ const CreateNoteModal: React.FC<Props> = ({ isOpen, onClose }) => {
                     ))}
                 </ul>
                 <div className={Styles.actionsContainer}>
-                    <Button icon={Cancel} onClick={handleCancel}>cancel</Button>
-                    <Button icon={Save} onClick={handleAddNote}>save note</Button>
+                    <Button icon={Cancel} onClick={handleCancel} color="warning">cancel</Button>
+                    <Button icon={Save} onClick={handleAddNote} color="success">save note</Button>
                 </div>
             </div>
         </Modal>

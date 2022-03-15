@@ -150,9 +150,9 @@ const EditNote: React.FC = () => {
                     </ul>
                 </div>
                 <div className={Styles.actionsContainer}>
-                    <Button icon={Cancel} onClick={openConfirmReset}>reset changes</Button>
-                    <Button icon={Trash} onClick={openConfirmDelete}>delete note</Button>
-                    <Button icon={Save} onClick={handleSaveNote}>save note</Button>
+                    <Button icon={Cancel} onClick={openConfirmReset} color="warning">reset changes</Button>
+                    <Button icon={Trash} onClick={openConfirmDelete} color="warning">delete note</Button>
+                    <Button icon={Save} onClick={handleSaveNote} color="success">save note</Button>
                 </div>
             </div>
             <ConfirmationModal 

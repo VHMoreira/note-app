@@ -3,19 +3,21 @@ import Style from './style.scss'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
 
+type ButtonColor = 'success' | 'warning' | 'light' | 'default'
+
 type Props = {
     icon?: React.FC
-    isLightContent?: boolean
+    color?: ButtonColor
 }
 
 const Button: React.FC<Props & ButtonProps> = ({ 
     icon: Icon,
-    isLightContent = false,
+    color = 'default',
     children, 
     ...props 
 }) => {
     return (
-        <button className={`${Style.buttonContainer} ${isLightContent ? Style.light : ''}`} {...props} >
+        <button className={`${Style.buttonContainer} ${Style[color]}`} {...props} >
             <div className={Style.buttonIconWrapper}>
                 {Icon ? <Icon /> : null} 
             </div>

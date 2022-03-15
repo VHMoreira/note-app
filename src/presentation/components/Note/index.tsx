@@ -48,10 +48,10 @@ const Note: React.FC<Props> = ({ note, readOnly = false }) => {
                         <div className={Styles.noteBody}>
                             <TodoList itens={note.itens} readOnly={readOnly}/>
                             <div className={Styles.noteControllers}>
-                                <Button isLightContent icon={Edit} onClick={handleRedirectToEditPage}>
+                                <Button color="light" icon={Edit} onClick={handleRedirectToEditPage}>
                                     Edit Note
                                 </Button>
-                                <Button isLightContent icon={Trash} onClick={openConfirmation}>
+                                <Button color="warning" icon={Trash} onClick={openConfirmation}>
                                     Delete
                                 </Button>
                             </div>

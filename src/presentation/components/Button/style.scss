@@ -4,17 +4,40 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    min-width: 100px;
     border-radius: 5px;
-    color: $dark;
-
-    border: 1px solid $dark;
     background-color: transparent;
+}
+
+.default {
+    color: $dark;
+    border: 1px solid $dark;
 
     &:hover {
         color: $light;
-        background-color: $principal;
-        border: 1px solid $principal;
+        background-color: $dark;
+        border: 1px solid $dark;
+    }
+}
+
+.success {
+    color: $success;
+    border: 1px solid $success;
+
+    &:hover {
+        color: $light;
+        background-color: $success;
+        border: 1px solid $success;
+    }
+}
+
+.warning {
+    color: $error;
+    border: 1px solid $error;
+
+    &:hover {
+        color: $light;
+        background-color: $error;
+        border: 1px solid $error;
     }
 }
 
@@ -25,6 +48,7 @@
     &:hover {
         color: $dark;
         background-color: $light;
+        border: 1px solid $light;
     }
 }
 
@@ -33,6 +57,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    margin-right: 5px;
 }
 
 .buttonContentWrapper {

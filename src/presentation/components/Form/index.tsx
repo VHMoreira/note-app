@@ -46,7 +46,7 @@ const Form: React.FC<Props> = ({
             <div className={Styles.field}>
                 <div className={Styles.fieldsHeader}>
                     <label htmlFor="itens">Note Itens</label>
-                    <Button icon={Plus} onClick={onAddNewItem}>new item</Button>
+                    <Button icon={Plus} onClick={onAddNewItem} color="success">new item</Button>
                 </div>
                 <ul className={Styles.itemFieldsList}>
                     {itensValue.map((item, index) => (
@@ -63,8 +63,8 @@ const Form: React.FC<Props> = ({
                     ))}
                 </ul>
                 <div className={Styles.actionsContainer}>
-                    <Button icon={Cancel} onClick={onCancel}>cancel</Button>
-                    <Button icon={Save} onClick={onSaveNote}>save note</Button>
+                    <Button icon={Cancel} onClick={onCancel} color="warning">cancel</Button>
+                    <Button icon={Save} onClick={onSaveNote} color="success">save note</Button>
                 </div>
             </div>
         </form>
