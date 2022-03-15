@@ -49,9 +49,13 @@ const CreateNoteModal: React.FC<Props> = ({ isOpen, onClose }) => {
         }
     }
 
-    const handleCancel = () => {
+    const resetState = () => {
         setTitle('')
         setItens([''])
+    }
+    
+    const handleCancel = () => {
+        resetState()
         onClose()
     }
 
@@ -60,6 +64,7 @@ const CreateNoteModal: React.FC<Props> = ({ isOpen, onClose }) => {
             title,
             itens
         })
+        resetState()
         onClose()
     }
 
