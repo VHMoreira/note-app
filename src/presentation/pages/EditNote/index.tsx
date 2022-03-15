@@ -140,17 +140,19 @@ const EditNote: React.FC = () => {
                                     value={item.text} 
                                     onChange={(event) => handleChangeItemText(event, item.id)}
                                 />
-                                <input type="checkbox" checked={item.isDone} onChange={(event) => handleChangeItemCheck(event, item.id)}/>
-                                {canDeleteItem ? <Trash className={Styles.delete} onClick={() => handleDeleteItem(item.id)}/> : null}
-                                {(noteItens.length - 1) === index ? <Plus className={Styles.add} onClick={handleAddNewItem} /> : null}
+                                <div className={Styles.itemActions}>
+                                    <input type="checkbox" checked={item.isDone} onChange={(event) => handleChangeItemCheck(event, item.id)}/>
+                                    {canDeleteItem ? <Trash className={Styles.delete} onClick={() => handleDeleteItem(item.id)}/> : null}
+                                    {(noteItens.length - 1) === index ? <Plus className={Styles.add} onClick={handleAddNewItem} /> : null}
+                                </div>
                             </li>
                         ))}
                     </ul>
-                    <div className={Styles.actionsContainer}>
-                        <Button icon={Cancel} onClick={openConfirmReset}>reset changes</Button>
-                        <Button icon={Trash} onClick={openConfirmDelete}>delete note</Button>
-                        <Button icon={Save} onClick={handleSaveNote}>save note</Button>
-                    </div>
+                </div>
+                <div className={Styles.actionsContainer}>
+                    <Button icon={Cancel} onClick={openConfirmReset}>reset changes</Button>
+                    <Button icon={Trash} onClick={openConfirmDelete}>delete note</Button>
+                    <Button icon={Save} onClick={handleSaveNote}>save note</Button>
                 </div>
             </div>
             <ConfirmationModal 
