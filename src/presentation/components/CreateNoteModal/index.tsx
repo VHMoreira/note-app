@@ -4,8 +4,9 @@ import Button from "../Button"
 import Modal from "../Modal"
 import Styles from './styles.scss'
 import { Cancel, Plus, Save, Trash } from "@/presentation/icons"
+import { useNotes } from "@/presentation/hooks/useNotes"
 
-type TasksChangeHandler = (event: React.ChangeEvent<HTMLInputElement>, index: number) => void
+type ItensChangeHandler = (event: React.ChangeEvent<HTMLInputElement>, index: number) => void
 
 type Props = {
     isOpen: boolean
@@ -14,27 +15,29 @@ type Props = {
 
 const CreateNoteModal: React.FC<Props> = ({ isOpen, onClose }) => {
     const [title, setTitle] = useState('')
-    const [tasks, setTasks] = useState<string[]>([''])
+    const [itens, setItens] = useState<string[]>([''])
 
-    const canDeleteTask = tasks.length > 1
+    const { addNote } = useNotes()
+
+    const canDeleteTask = itens.length > 1
 
     const handleChangeTitle: React.ChangeEventHandler<HTMLInputElement> = (event) => {
         const { value } = event.target
         setTitle(value)
     }
 
-    const handleChangeTask: TasksChangeHandler = (event, index) => {
+    const handleChangeTask: ItensChangeHandler = (event, index) => {
         const { value } = event.target
-        const newTasks = [
-            ...tasks
+        const newItens = [
+            ...itens
         ]
 
-        newTasks[index] = value
-        setTasks(newTasks)
+        newItens[index] = value
+        setItens(newItens)
     }
 
     const handleAddNewTask = () => {
-        setTasks(prev => [
+        setItens(prev => [
             ...prev,
             ''
         ])
@@ -42,13 +45,21 @@ const CreateNoteModal: React.FC<Props> = ({ isOpen, onClose }) => {
 
     const handleDeleteNewTask = (indexToDelete: number) => {
         if(canDeleteTask) {
-            setTasks(prev => prev.filter((_, index) => index !== indexToDelete))
+            setItens(prev => prev.filter((_, index) => index !== indexToDelete))
         }
     }
 
     const handleCancel = () => {
         setTitle('')
-        setTasks([''])
+        setItens([''])
+        onClose()
+    }
+
+    const handleAddNote = () => {
+        addNote({
+            title,
+            itens
+        })
         onClose()
     }
 
@@ -62,11 +73,11 @@ const CreateNoteModal: React.FC<Props> = ({ isOpen, onClose }) => {
             </div>
             <div className={Styles.field}>
                 <div className={Styles.fieldsHeader}>
-                    <label htmlFor="tasks">Note Tasks</label>
+                    <label htmlFor="itens">Note Itens</label>
                     <Button icon={Plus} onClick={handleAddNewTask}>new task</Button>
                 </div>
                 <ul className={Styles.taskFieldsList}>
-                    {tasks.map((task, index) => (
+                    {itens.map((task, index) => (
                         <li key={`task-${index}`} className={Styles.fieldContainer}>
                             <input 
                                 className={Styles.fieldInput}
@@ -81,7 +92,7 @@ const CreateNoteModal: React.FC<Props> = ({ isOpen, onClose }) => {
                 </ul>
                 <div className={Styles.actionsContainer}>
                     <Button icon={Cancel} onClick={handleCancel}>cancel</Button>
-                    <Button icon={Save} onClick={handleAddNewTask}>save note</Button>
+                    <Button icon={Save} onClick={handleAddNote}>save note</Button>
                 </div>
             </div>
         </Modal>

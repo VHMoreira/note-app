@@ -4,6 +4,7 @@ import { Button, CreateNoteModal, NoteList } from '@/presentation/components'
 import { Plus } from '@/presentation/icons'
 import { Note } from '@/domain/models'
 import { useToggle } from '@/presentation/hooks'
+import { useNotes } from '@/presentation/hooks/useNotes'
 
 const notesMock: Note[] = [
     {
@@ -34,13 +35,15 @@ const notesMock: Note[] = [
 
 const Notes: React.FC = () => {
     const { isActive, enable, disable } = useToggle()
+    const { notes } = useNotes()
+
     return (
         <section className={Style.notesContainer}>
             <article className={Style.notesListWrapper}>
                 <div className={Style.notesControllers}>
                     <Button icon={Plus} onClick={enable}>new note</Button>
                 </div>
-                <NoteList notes={notesMock} readOnly/>
+                <NoteList notes={notes} readOnly/>
             </article>
             <CreateNoteModal isOpen={isActive} onClose={disable}/>
         </section>
