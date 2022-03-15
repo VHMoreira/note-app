@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useNotes } from '@/presentation/hooks/useNotes'
 import { useNavigate, useParams } from 'react-router-dom'
 import Styles from './styles.scss'
-import { Cancel, Plus, Save, Trash } from '@/presentation/icons'
+import { ArrowLeft, Cancel, Plus, Save, Trash } from '@/presentation/icons'
 import { Button, ConfirmationModal } from '@/presentation/components'
 import { TodoItem } from '@/domain/models'
 import { useToggle } from '@/presentation/hooks'
@@ -112,6 +112,10 @@ const EditNote: React.FC = () => {
 
     return (
         <div className={Styles.editNotesContainer}>
+            <div className={Styles.backButtonContainer} onClick={() => navigate('/')}>
+                <ArrowLeft />
+                <p>Home</p>
+            </div>
             <div className={Styles.editNotesWrapper}>
                 <div className={Styles.field}>
                     <div className={Styles.fieldsHeader}>
