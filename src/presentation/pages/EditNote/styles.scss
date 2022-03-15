@@ -1,0 +1,95 @@
+@import '@/presentation/styles/colors.scss';
+
+.editNotesContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    min-height: 100vh;
+    padding: 30px 10px;
+}
+
+.editNotesWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 50vh;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 10px;
+
+    background-color: $greyBaseline;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 5px;
+
+    & + .field {
+        margin-top: 10px;
+    }
+}
+
+.fieldContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    & + .fieldContainer {
+        margin-top: 5px;
+    }
+
+    svg {
+        margin-left: 10px;
+        cursor: pointer;
+    }
+}
+
+.delete {
+    &:hover {
+        color: $error;
+    }
+}
+
+.add {
+    &:hover {
+        color: $success;
+    }
+}
+
+.itemFieldsList {
+    margin-bottom: 10px;
+}
+
+.fieldsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.actionsContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    
+    button {
+        & + button {
+            margin-left: 5px;
+        }
+    }
+}
+
+.fieldInput {
+    padding: 5px 10px;
+    border: 1px solid $greyBaseline;
+    border-radius: 5px;
+    width: 100%;
+}
+
