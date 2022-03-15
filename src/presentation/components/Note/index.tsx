@@ -8,6 +8,7 @@ import Button from '../Button'
 import { Edit, Trash } from '@/presentation/icons'
 import { useNavigate } from 'react-router-dom'
 import ConfirmationModal from '../ConfirmationModal'
+import { useNotes } from '@/presentation/hooks/useNotes'
 
 type Props = {
     note: NoteModel
@@ -16,6 +17,7 @@ type Props = {
 
 const Note: React.FC<Props> = ({ note, readOnly = false }) => {
     const navigate = useNavigate()
+    const { deleteNote } = useNotes()
     const { isActive, toggle } = useToggle()
     const { 
         isActive: isConfirmationOpen, 
@@ -30,7 +32,7 @@ const Note: React.FC<Props> = ({ note, readOnly = false }) => {
     }, [])
 
     const handleDeleteNote = useCallback(() => {
-        console.log('delete note ' + note.id)
+        deleteNote({ id: note.id })
     }, [])
 
     return (

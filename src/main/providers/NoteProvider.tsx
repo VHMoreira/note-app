@@ -1,12 +1,14 @@
 import React, { createContext, useCallback, useState } from 'react';
 import { Note } from '@/domain/models'
-import { AddNote, LoadNotes } from '@/domain/usecases';
+import { AddNote, DeleteNote, LoadNotes } from '@/domain/usecases';
 import { cashAddNote,  cashLoadNotes} from '@/data/usecases';
+import { cashDeleteNote } from '@/data/usecases/cacheDeleteNote';
 
 interface NoteContextData {
     notes: Note[]
     addNote: AddNote
     loadNotes: LoadNotes
+    deleteNote: DeleteNote
 }
 
 type State = {
@@ -41,8 +43,15 @@ export const NoteProvider: React.FC = ({ children }) => {
         return response
     }, [])
 
+    const deleteNote = useCallback<DeleteNote>((params) => {
+        cashDeleteNote(params)
+        setData(prev => ({
+            notes: prev.notes.filter((note) => note.id !== params.id)
+        }))
+    }, [])
+
     return (
-        <NoteContext.Provider value={{ ...data, addNote, loadNotes }}>
+        <NoteContext.Provider value={{ ...data, addNote, loadNotes, deleteNote }}>
             { children }
         </NoteContext.Provider>
     )
