@@ -1,25 +1,28 @@
 import React, { createContext, useCallback, useState } from 'react';
 import { Note } from '@/domain/models'
-import { AddNote, DeleteNote, LoadNotes } from '@/domain/usecases';
-import { cashAddNote,  cashLoadNotes} from '@/data/usecases';
-import { cashDeleteNote } from '@/data/usecases/cacheDeleteNote';
+import { AddNote, DeleteNote, LoadNotes, LoadNote } from '@/domain/usecases';
+import { cashAddNote,  cashLoadNotes, cashDeleteNote, cashLoadNote} from '@/data/usecases';
 
 interface NoteContextData {
     notes: Note[]
+    note: Note
     addNote: AddNote
     loadNotes: LoadNotes
     deleteNote: DeleteNote
+    loadNote: LoadNote
 }
 
 type State = {
     notes: Note[]
+    note: Note | null
 }
 
 export const NoteContext = createContext<NoteContextData>({} as NoteContextData)
 
 export const NoteProvider: React.FC = ({ children }) => {
     const [data, setData] = useState<State>({
-        notes: []
+        notes: [],
+        note: undefined
     })
 
     const loadNotes = useCallback<LoadNotes>(() => {
@@ -46,12 +49,22 @@ export const NoteProvider: React.FC = ({ children }) => {
     const deleteNote = useCallback<DeleteNote>((params) => {
         cashDeleteNote(params)
         setData(prev => ({
+            ...prev,
             notes: prev.notes.filter((note) => note.id !== params.id)
         }))
     }, [])
 
+    const loadNote = useCallback<LoadNote>((params) => {
+        const response = cashLoadNote(params)
+        setData(prev => ({
+            ...prev,
+            note: response
+        }))
+        return response
+    }, [])
+
     return (
-        <NoteContext.Provider value={{ ...data, addNote, loadNotes, deleteNote }}>
+        <NoteContext.Provider value={{ ...data, addNote, loadNotes, deleteNote, loadNote }}>
             { children }
         </NoteContext.Provider>
     )
