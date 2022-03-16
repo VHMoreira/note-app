@@ -60,7 +60,7 @@ const EditNote: React.FC = () => {
             return item
         })
         setNoteItens(newItens)
-    }, [])
+    }, [noteItens])
 
     const handleChangeItemCheck = useCallback<ItensChangeHandler>((event, id) => {
         const { checked } = event.target
