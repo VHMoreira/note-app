@@ -108,6 +108,7 @@ const EditNote: React.FC = () => {
             title: noteTitle,
             itens: noteItens
         })
+        navigate('/')
     }, [noteTitle, noteItens])
 
     return (
